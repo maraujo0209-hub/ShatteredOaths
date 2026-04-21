@@ -7,10 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;1,400&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* The "Cold" Palette */
             --bg-color: #0d1117; 
             --card-bg: #161b22;
-            --accent-color: #ff3e3e; /* Sharper red for the cold background */
+            --accent-color: #ff3e3e; 
             --text-color: #c9d1d9;
             --muted-text: #8b949e;
         }
@@ -22,14 +21,15 @@
             margin: 0;
             padding: 0;
             line-height: 1.8;
-            /* Subtle gradient to keep the "Cold" look from feeling flat */
-            background: radial-gradient(circle at top, #161b22 0%, #0d1117 100%);
+            /* Spotlight effect */
+            background: radial-gradient(circle at top, #1c2128 0%, #0d1117 100%);
+            background-attachment: fixed;
         }
 
         h1, h2, h3, .tagline {
             font-family: 'Cinzel', serif;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px; /* Slightly wider for a more cinematic feel */
             color: #f0f6fc;
         }
 
@@ -39,7 +39,6 @@
             margin: 0 auto;
         }
 
-        /* --- HERO SECTION --- */
         .hero {
             display: flex;
             align-items: center;
@@ -48,21 +47,20 @@
             min-height: 90vh;
         }
 
-        .hero-content { flex: 1; }
         .hero-content h1 { font-size: 3.5rem; margin: 0; }
 
         .tagline {
             color: var(--accent-color);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 25px;
             display: block;
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .hero-image img {
             max-width: 350px;
             width: 100%;
-            box-shadow: 0 0 50px rgba(255, 62, 62, 0.2);
+            box-shadow: 0 0 60px rgba(255, 62, 62, 0.15);
             border: 1px solid #30363d;
         }
 
@@ -77,16 +75,15 @@
             transition: 0.3s;
             border: none;
             cursor: pointer;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .cta-button:hover {
             background-color: #cc0000;
             transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(255, 62, 62, 0.4);
+            box-shadow: 0 5px 25px rgba(255, 62, 62, 0.4);
         }
 
-        /* --- REVIEWS --- */
         .review-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -101,9 +98,6 @@
             border-bottom: 4px solid var(--accent-color);
         }
 
-        .review-card p { font-family: 'Lora', serif; font-style: italic; margin: 0; }
-
-        /* --- NEWSLETTER --- */
         .newsletter { text-align: center; border-top: 1px solid #30363d; }
 
         .newsletter-form input[type="email"] {
@@ -139,7 +133,7 @@
         </div>
     </section>
 
-    <section style="background: rgba(22, 27, 34, 0.8); padding: 100px 20px; text-align: center; border-top: 1px solid #30363d; border-bottom: 1px solid #30363d;">
+    <section style="background: rgba(22, 27, 34, 0.9); padding: 100px 20px; text-align: center; border-top: 1px solid #30363d; border-bottom: 1px solid #30363d;">
         <p style="font-family: 'Lora', serif; font-size: 1.6rem; color: #f0f6fc; margin-bottom: 20px;">
             This isn’t just a story. <span style="color: var(--accent-color); font-weight: bold;">It’s a breaking point.</span>
         </p>
@@ -149,7 +143,7 @@
             <p>And those who once swore loyalty now fight for power.</p>
         </div>
         <div style="height: 40px;"></div>
-        <h2 style="font-family: 'Cinzel', serif; font-size: 1.8rem; color: #f0f6fc;">
+        <h2 style="font-size: 1.8rem; color: #f0f6fc;">
             You don’t just read this story… <br>
             <span style="color: var(--accent-color);">You feel every choice.</span>
         </h2>
@@ -157,7 +151,7 @@
 
     <section style="padding: 80px 20px;">
         <div style="background-color: var(--card-bg); padding: 60px; border-radius: 4px; border: 1px solid #30363d; max-width: 850px; margin: 0 auto;">
-            <h2 style="font-family: 'Cinzel', serif; color: #f0f6fc; margin-bottom: 30px; font-size: 1.8rem;">If you crave stories that hit hard...</h2>
+            <h2 style="color: #f0f6fc; margin-bottom: 30px; font-size: 1.8rem;">If you crave stories that hit hard...</h2>
             <ul style="list-style: none; padding: 0; font-size: 1.2rem; color: #c9d1d9; line-height: 2.2;">
                 <li style="margin-bottom: 15px; padding-left: 35px; position: relative;">
                     <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold;">✕</span> Characters forced into impossible choices

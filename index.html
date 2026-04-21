@@ -3,236 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shattered Oaths | Marcio Araujo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Shattered Oaths | A Dystopian Thriller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;1,400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Deep Space Blue/Black Palette */
-            --bg-color: #0d0e12; 
-            --accent-blue: #00d4ff; 
-            --text-light: #f4f4f4;
-            --text-dim: #94a3b8;
-            --cta-red: #b91c1c;
+            --bg-color: #0a0a0a;
+            --card-bg: #151515;
+            --accent-color: #b22222; /* Deep Blood Red */
+            --text-color: #e0e0e0;
+            --muted-text: #888;
         }
 
         body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            font-family: 'Lora', serif;
-            /* Radial gradient adds depth so it's not "flat" black */
-            background: radial-gradient(circle at 50% 30%, #1a1c23 0%, var(--bg-color) 70%);
-            background-attachment: fixed;
-            color: var(--text-light);
+            padding: 0;
             line-height: 1.6;
-            text-align: center;
-            overflow-x: hidden;
         }
 
-        /* The "Calling" Factor: A subtle tech-grid overlay */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        h1, h2, h3 {
+        h1, h2, .tagline {
             font-family: 'Cinzel', serif;
-            color: var(--accent-blue);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 20px;
         }
 
         section {
             padding: 80px 20px;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            position: relative;
         }
 
-        /* HERO SECTION */
+        /* --- HERO SECTION --- */
         .hero {
-            padding: 160px 20px;
-            /* Smoother blend from image to background */
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('cover.jpg.png');
-            background-size: cover;
-            background-position: center 25%; 
-            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 80vh;
         }
 
-        .hero h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
             color: #fff;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-            margin: 10px 0;
-            line-height: 1.1;
         }
 
-        .hero h3 {
-            font-size: 1.1rem;
-            letter-spacing: 6px;
-            color: var(--accent-blue);
+        .tagline {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            display: block;
         }
 
-        /* BUTTONS */
-        .btn {
+        .blurb {
+            font-family: 'Lora', serif;
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .hero-image img {
+            max-width: 350px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(178, 34, 34, 0.4);
+            border: 1px solid #333;
+        }
+
+        .cta-button {
             display: inline-block;
-            background-color: var(--cta-red);
-            color: white;
-            padding: 22px 45px;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 15px 35px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.2rem;
-            border-radius: 4px;
-            margin: 25px 0;
-            transition: all 0.3s ease;
-            border: 1px solid var(--accent-blue);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border-radius: 2px;
+            transition: transform 0.3s, background-color 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn:hover {
+        .cta-button:hover {
+            background-color: #8b0000;
             transform: translateY(-3px);
-            background-color: #e31e1e;
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
-            border-color: #fff;
         }
 
-        .micro-text {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            letter-spacing: 1px;
-            font-style: italic;
+        /* --- REVIEWS SECTION --- */
+        .reviews {
+            text-align: center;
+            border-top: 1px solid #222;
         }
 
-        .bullet-list {
-            text-align: left;
-            display: inline-block;
-            max-width: 550px;
-            margin-top: 20px;
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
         }
 
-        .bullet-list li {
-            margin-bottom: 20px;
-            list-style: none;
-            font-size: 1.15rem;
-            border-left: 2px solid var(--accent-blue);
-            padding-left: 20px;
-            background: rgba(255,255,255,0.02);
-            padding: 15px;
-        }
-
-        .quote-box {
-            font-style: italic;
-            background: rgba(0, 212, 255, 0.03);
-            border-right: 4px solid var(--accent-blue);
+        .review-card {
+            background: var(--card-bg);
             padding: 30px;
-            margin: 40px 0;
-            text-align: right;
-            border-radius: 10px 0 0 10px;
+            border: 1px solid #222;
+            border-top: 3px solid var(--accent-color);
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--accent-blue), transparent);
-            margin: 60px 0;
-            opacity: 0.3;
+        .review-card p {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 0;
         }
 
-        .author-section {
-            background-color: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            padding: 80px 20px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+        /* --- NEWSLETTER SECTION --- */
+        .newsletter {
+            text-align: center;
+            background-color: #000;
+            padding: 60px 20px;
+            margin-top: 40px;
+            border: 1px solid var(--card-bg);
         }
 
-        footer {
-            padding: 60px;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            letter-spacing: 2px;
+        .newsletter h2 {
+            margin-bottom: 15px;
         }
 
-        strong {
-            color: var(--accent-blue);
+        .newsletter p {
+            color: var(--muted-text);
+            margin-bottom: 30px;
         }
 
-        @media (max-width: 600px) {
-            .hero { padding: 100px 20px; }
-            section { padding: 50px 20px; }
+        .newsletter-form input[type="email"] {
+            padding: 12px;
+            width: 100%;
+            max-width: 300px;
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 40px;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-image img {
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <h3>Shattered Oaths</h3>
-        <h1>A world built on loyalty is about to collapse.</h1>
-        <p>Power is rising. Trust is dying. And the ones who survive… will never be the same.</p>
-        <a href="https://books2read.com/shatteredoaths" class="btn">👉 Start Reading Now</a>
-        <p class="micro-text">Available instantly. Start in seconds.</p>
+        <div class="hero-content">
+            <h1>Shattered Oaths</h1>
+            <span class="tagline">Loyalty has a price. Survival has a cost.</span>
+            <p class="blurb">
+                In a future where every promise is a trap and survival is a betrayal, how far will you go to keep the one oath that matters?
+            </p>
+            <a href="https://books2read.com/ShatteredOaths" class="cta-button">AVAILABLE NOW</a>
+        </div>
+        <div class="hero-image">
+            <img src="cover.jpg.png" alt="Shattered Oaths Book Cover">
+        </div>
     </section>
 
-    <section>
-        <h2>This isn’t just a story. It’s a breaking point.</h2>
-        <p>In a city of steel and shadows, the rules are gone. Kingdoms are falling without warning. Alliances crumble overnight. And those who once swore loyalty now fight for power.</p>
-        <p>In <strong>Shattered Oaths</strong>, every decision has consequences. Every betrayal leaves scars. And no one escapes unchanged.</p>
-        <p><em>You don’t just read this story… You feel every choice.</em></p>
+    <section class="reviews">
+        <h2>Reader Acclaim</h2>
+        <div class="review-grid">
+            <div class="review-card">
+                <p>“Intense, emotional, and impossible to put down.”</p>
+            </div>
+            <div class="review-card">
+                <p>“Every chapter pulls you deeper into the chaos.”</p>
+            </div>
+            <div class="review-card">
+                <p>“You don’t know who to trust… and that’s what makes it powerful.”</p>
+            </div>
+        </div>
     </section>
 
-    <hr>
-
-    <section>
-        <h2>If you like stories that hit hard…</h2>
-        <ul class="bullet-list">
-            <li><strong>Impossible Choices:</strong> Characters forced into corners where no one wins.</li>
-            <li><strong>Relentless Tension:</strong> Emotional stakes that build and never let go.</li>
-            <li><strong>Unexpected Betrayals:</strong> Trust is a luxury no one can afford.</li>
-            <li><strong>Blurred Morality:</strong> A world where right and wrong are lost in the shadows.</li>
-        </ul>
-        <p>Then this story will stay with you long after it ends.</p>
+    <section class="newsletter">
+        <h2>Enter the Wasteland</h2>
+        <p>Get exclusive updates, character lore, and news on the next release.</p>
+        
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your Email Address" required>
+            <br>
+            <button type="submit" class="cta-button">JOIN THE INNER CIRCLE</button>
+        </form>
     </section>
 
-    <section>
-        <h2>Early Reader Reactions</h2>
-        <div class="quote-box">“Intense, emotional, and impossible to put down.”</div>
-        <div class="quote-box">“Every chapter pulls you deeper into the chaos.”</div>
-        <div class="quote-box">“You don’t know who to trust… and that’s what makes it powerful.”</div>
-    </section>
-
-    <hr>
-
-    <section>
-        <h2>Ready to enter the world?</h2>
-        <a href="https://books2read.com/shatteredoaths" class="btn">👉 Get Your Copy Now</a>
-        <p class="micro-text">Start reading instantly.</p>
-    </section>
-
-    <section class="author-section">
-        <h2>About Marcio Araujo</h2>
-        <p><strong>Marcio Araujo</strong> writes stories about power, emotion, and the consequences of human choices. His work explores what happens when everything is at stake… and nothing is guaranteed.</p>
-    </section>
-
-    <section>
-        <h2>One choice can change everything.</h2>
-        <p>The world is waiting. The story is ready. The only question is…</p>
-        <p><strong>Will you step into it?</strong></p>
-        <a href="https://books2read.com/shatteredoaths" class="btn">👉 Start Reading Now</a>
-    </section>
-
-    <footer>
+    <footer style="text-align: center; padding: 40px; color: var(--muted-text); font-size: 0.8rem; border-top: 1px solid #111;">
         &copy; 2026 Marcio Araujo. All Rights Reserved.
     </footer>
 

@@ -3,50 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Author</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <meta name="description" content="[Your Name]'s official website. Explore books, read the blog, and get in touch.">
+    <title>Shattered Oaths | Marcio Araujo</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #f4f4f4;
+            --accent-color: #ffcc00; /* Neon Gold */
+            --subtle-gray: #222;
+            --font-main: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--accent-color);
+        }
+
+        section {
+            padding: 6rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .about-text {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: var(--subtle-gray);
+            padding: 2rem;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.5;
+            border-top: 1px solid #222;
+        }
+
+        /* Subtle Fade-in Animation */
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <nav class="site-nav">
-            <a href="index.html" class="nav-logo">[Your Name]</a>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#books">Books</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="fade-in">
+        <div class="section-label">A New Dystopian Thriller</div>
+        <h1 class="hero-title">Shattered Oaths</h1>
+        <p class="tagline">"Survival is just the opening chapter."</p>
+        <a href="#order" class="cta-button">Pre-Order Now</a>
     </header>
 
-    <main>
-        <section class="hero-section" id="home">
-            <div class="hero-content">
-                <div class="book-spotlight">
-                    <img src="book-cover.jpg" alt="[Latest Book Title] Book Cover" class="book-cover">
-                    <div class="book-cta">
-                        <h3>[Latest Book Title]</h3>
-                        <a href="#" class="btn btn-primary">Buy Now</a>
-                        <a href="#" class="btn btn-secondary">Read More</a>
-                    </div>
-                </div>
-                <div class="author-bio">
-                    <h1>[Your Name]</h1>
-                    <p>
-                        A short, engaging bio goes here. This is your chance to introduce yourself to readers and hook their interest. Mention your genre, where your work has been featured, or a key theme in your writing.
-                    </p>
-                </div>
+    <section id="about" class="fade-in">
+        <span class="section-label">The Signal</span>
+        <div class="about-text">
+            Rain slicked the neon bones of Neo-Eden, washing the grime from its steel skin but never touching its rot. In a city where your own neural implant can be turned against you, one man chooses to remember—even when remembering hurts.
+        </div>
+    </section>
+
+    <section id="characters">
+        <span class="section-label">The Players</span>
+        <div class="character-grid">
+            <div class="character-card">
+                <h3>Kai Vex</h3>
+                <p>The fugitive. Marked a traitor by a bullet he didn't mean to miss, he now moves through the shadows of Zone 8A to dismantle Apex's neural failsafes.</p>
             </div>
-        </section>
-        
-        </main>
-    
-    <footer class="site-footer">
-        <p>&copy; 2024 [Your Name]. All rights reserved.</p>
-        </footer>
+            <div class="character-card">
+                <h3>Selene</h3>
+                <p>The operative. Designed for perfect obedience, she must decide if the mission matters more than the sentiment of a life she was forced to forget.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Marcio Araujo. All Rights Reserved.</p>
+        <p>Built with purpose. To live, not obey.</p>
+    </footer>
 
 </body>
 </html>

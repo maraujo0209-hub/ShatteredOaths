@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shattered Oaths | A Dystopian Thriller</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;1,400&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;1,400&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0a0a0a;
             --card-bg: #151515;
-            --accent-color: #b22222; /* Deep Blood Red */
+            --accent-color: #b22222; 
             --text-color: #e0e0e0;
             --muted-text: #888;
         }
@@ -20,18 +20,19 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        h1, h2, .tagline {
+        h1, h2, h3, .tagline, .hook-title {
             font-family: 'Cinzel', serif;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: #fff;
         }
 
         section {
-            padding: 80px 20px;
-            max-width: 1100px;
+            padding: 100px 20px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -41,37 +42,25 @@
             align-items: center;
             justify-content: space-between;
             gap: 40px;
-            min-height: 80vh;
+            min-height: 90vh;
         }
 
-        .hero-content {
-            flex: 1;
-        }
+        .hero-content { flex: 1; }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 10px; }
 
         .tagline {
             color: var(--accent-color);
             font-size: 1.2rem;
             margin-bottom: 25px;
             display: block;
-        }
-
-        .blurb {
-            font-family: 'Lora', serif;
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            font-style: italic;
+            font-weight: bold;
         }
 
         .hero-image img {
             max-width: 350px;
             width: 100%;
-            box-shadow: 0 0 30px rgba(178, 34, 34, 0.4);
+            box-shadow: 0 0 40px rgba(178, 34, 34, 0.4);
             border: 1px solid #333;
         }
 
@@ -79,88 +68,104 @@
             display: inline-block;
             background-color: var(--accent-color);
             color: #fff;
-            padding: 15px 35px;
+            padding: 18px 40px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 2px;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: 0.3s;
             border: none;
             cursor: pointer;
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
             background-color: #8b0000;
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(178, 34, 34, 0.3);
         }
 
-        /* --- REVIEWS SECTION --- */
-        .reviews {
+        /* --- HOOK SECTION --- */
+        .hook-section {
             text-align: center;
-            border-top: 1px solid #222;
+            background: linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
         }
 
+        .hook-text {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .highlight-red { color: var(--accent-color); font-weight: bold; }
+
+        /* --- EMOTIONAL CONNECTION --- */
+        .emotional-connection {
+            background-color: var(--card-bg);
+            border: 1px solid #222;
+            padding: 60px;
+            border-radius: 4px;
+        }
+
+        .emotional-connection h2 { margin-bottom: 30px; font-size: 1.8rem; }
+
+        .connection-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .connection-list li {
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .connection-list li::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* --- REVIEWS --- */
         .review-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
             margin-top: 40px;
         }
 
         .review-card {
-            background: var(--card-bg);
-            padding: 30px;
+            background: #000;
+            padding: 35px;
             border: 1px solid #222;
-            border-top: 3px solid var(--accent-color);
+            border-bottom: 4px solid var(--accent-color);
         }
 
-        .review-card p {
-            font-family: 'Lora', serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            margin: 0;
-        }
+        .review-card p { font-family: 'Lora', serif; font-style: italic; }
 
-        /* --- NEWSLETTER SECTION --- */
-        .newsletter {
-            text-align: center;
-            background-color: #000;
-            padding: 60px 20px;
-            margin-top: 40px;
-            border: 1px solid var(--card-bg);
-        }
-
-        .newsletter h2 {
-            margin-bottom: 15px;
-        }
-
-        .newsletter p {
-            color: var(--muted-text);
-            margin-bottom: 30px;
-        }
+        /* --- NEWSLETTER --- */
+        .newsletter { text-align: center; border-top: 1px solid #222; }
 
         .newsletter-form input[type="email"] {
-            padding: 12px;
+            padding: 15px;
             width: 100%;
-            max-width: 300px;
+            max-width: 350px;
             background: #111;
             border: 1px solid #333;
             color: #fff;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
 
-        /* Responsive Settings */
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 40px;
-            }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-image img {
-                max-width: 250px;
-            }
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .connection-list { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -170,35 +175,51 @@
         <div class="hero-content">
             <h1>Shattered Oaths</h1>
             <span class="tagline">Loyalty has a price. Survival has a cost.</span>
-            <p class="blurb">
-                In a future where every promise is a trap and survival is a betrayal, how far will you go to keep the one oath that matters?
+            <p style="font-size: 1.2rem; margin-bottom: 30px; font-family: 'Lora', serif;">
+                A dystopian journey where honor is a relic and every choice carries the weight of a world on the brink.
             </p>
-            <a href="https://books2read.com/ShatteredOaths" class="cta-button">AVAILABLE NOW</a>
+            <a href="https://books2read.com/ShatteredOaths" class="cta-button">GET THE BOOK</a>
         </div>
         <div class="hero-image">
             <img src="cover.jpg.png" alt="Shattered Oaths Book Cover">
         </div>
     </section>
 
+    <section class="hook-section">
+        <p class="hook-text">This isn’t just a story. <span class="highlight-red">It’s a breaking point.</span></p>
+        <p class="hook-text">The rules are gone. Kingdoms are falling without warning.</p>
+        <p class="hook-text">Alliances crumble overnight.</p>
+        <div style="height: 40px;"></div>
+        <h2 style="font-size: 1.5rem;">You don’t just read this story… <br><span class="highlight-red">You feel every choice.</span></h2>
+    </section>
+
+    <section>
+        <div class="emotional-connection">
+            <h2>If you crave stories that hit hard...</h2>
+            <ul class="connection-list">
+                <li>Characters forced into impossible choices</li>
+                <li>Emotional tension that builds and doesn’t let go</li>
+                <li>Unexpected betrayals</li>
+                <li>A world where right and wrong blur together</li>
+            </ul>
+            <p style="margin-top: 30px; font-family: 'Lora', serif; font-size: 1.2rem; font-style: italic;">
+                Then this story will stay with you long after it ends.
+            </p>
+        </div>
+    </section>
+
     <section class="reviews">
-        <h2>Reader Acclaim</h2>
+        <h2 style="text-align: center;">Reader Acclaim</h2>
         <div class="review-grid">
-            <div class="review-card">
-                <p>“Intense, emotional, and impossible to put down.”</p>
-            </div>
-            <div class="review-card">
-                <p>“Every chapter pulls you deeper into the chaos.”</p>
-            </div>
-            <div class="review-card">
-                <p>“You don’t know who to trust… and that’s what makes it powerful.”</p>
-            </div>
+            <div class="review-card"><p>“Intense, emotional, and impossible to put down.”</p></div>
+            <div class="review-card"><p>“Every chapter pulls you deeper into the chaos.”</p></div>
+            <div class="review-card"><p>“You don’t know who to trust… and that’s what makes it powerful.”</p></div>
         </div>
     </section>
 
     <section class="newsletter">
         <h2>Enter the Wasteland</h2>
         <p>Get exclusive updates, character lore, and news on the next release.</p>
-        
         <form class="newsletter-form">
             <input type="email" placeholder="Your Email Address" required>
             <br>
@@ -206,7 +227,7 @@
         </form>
     </section>
 
-    <footer style="text-align: center; padding: 40px; color: var(--muted-text); font-size: 0.8rem; border-top: 1px solid #111;">
+    <footer style="text-align: center; padding: 60px; color: var(--muted-text); font-size: 0.9rem; border-top: 1px solid #111;">
         &copy; 2026 Marcio Araujo. All Rights Reserved.
     </footer>
 

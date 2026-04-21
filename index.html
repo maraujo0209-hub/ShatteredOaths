@@ -7,20 +7,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --accent-blue: #00d4ff; /* Luminous blue from your cover tech */
+            /* Deep Space Blue/Black Palette */
+            --bg-color: #0d0e12; 
+            --accent-blue: #00d4ff; 
             --text-light: #f4f4f4;
-            --text-dim: #b0b0b0;
-            --cta-red: #9e0000;
+            --text-dim: #94a3b8;
+            --cta-red: #b91c1c;
         }
 
         body {
             margin: 0;
             font-family: 'Lora', serif;
-            background-color: var(--bg-color);
+            /* Radial gradient adds depth so it's not "flat" black */
+            background: radial-gradient(circle at 50% 30%, #1a1c23 0%, var(--bg-color) 70%);
+            background-attachment: fixed;
             color: var(--text-light);
             line-height: 1.6;
             text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* The "Calling" Factor: A subtle tech-grid overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         h1, h2, h3 {
@@ -35,15 +52,17 @@
             padding: 80px 20px;
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
 
-        /* HERO SECTION WITH YOUR COVER */
+        /* HERO SECTION */
         .hero {
             padding: 160px 20px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), url('cover.jpg.png'); 
+            /* Smoother blend from image to background */
+            background: linear-gradient(rgba(13, 14, 18, 0.4), var(--bg-color)), url('cover.jpg'); 
             background-size: cover;
-            background-position: center 20%; 
-            border-bottom: 2px solid var(--accent-blue);
+            background-position: center 25%; 
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -51,18 +70,20 @@
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 6vw, 3.5rem);
             color: #fff;
-            text-shadow: 0 0 15px var(--accent-blue);
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
             margin: 10px 0;
+            line-height: 1.1;
         }
 
         .hero h3 {
-            font-size: 1.2rem;
-            letter-spacing: 5px;
+            font-size: 1.1rem;
+            letter-spacing: 6px;
             color: var(--accent-blue);
         }
 
+        /* BUTTONS */
         .btn {
             display: inline-block;
             background-color: var(--cta-red);
@@ -70,53 +91,55 @@
             padding: 22px 45px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             border-radius: 4px;
             margin: 25px 0;
             transition: all 0.3s ease;
             border: 1px solid var(--accent-blue);
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            background-color: #c00000;
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            background-color: #e31e1e;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+            border-color: #fff;
         }
 
         .micro-text {
             font-size: 0.85rem;
             color: var(--text-dim);
             letter-spacing: 1px;
+            font-style: italic;
         }
 
         .bullet-list {
             text-align: left;
             display: inline-block;
-            max-width: 500px;
+            max-width: 550px;
             margin-top: 20px;
         }
 
         .bullet-list li {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             list-style: none;
-            font-size: 1.1rem;
-        }
-
-        .bullet-list li::before {
-            content: "◈";
-            color: var(--accent-blue);
-            margin-right: 15px;
+            font-size: 1.15rem;
+            border-left: 2px solid var(--accent-blue);
+            padding-left: 20px;
+            background: rgba(255,255,255,0.02);
+            padding: 15px;
         }
 
         .quote-box {
             font-style: italic;
-            background: rgba(255,255,255,0.03);
-            border-left: 4px solid var(--accent-blue);
-            padding: 25px;
-            margin: 30px 0;
-            text-align: left;
-            border-radius: 0 10px 10px 0;
+            background: rgba(0, 212, 255, 0.03);
+            border-right: 4px solid var(--accent-blue);
+            padding: 30px;
+            margin: 40px 0;
+            text-align: right;
+            border-radius: 10px 0 0 10px;
         }
 
         hr {
@@ -124,20 +147,22 @@
             height: 1px;
             background: linear-gradient(to right, transparent, var(--accent-blue), transparent);
             margin: 60px 0;
-            opacity: 0.4;
+            opacity: 0.3;
         }
 
         .author-section {
-            background-color: #0d0d0d;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
             padding: 80px 20px;
-            border-top: 1px solid #222;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         footer {
-            padding: 50px;
+            padding: 60px;
             font-size: 0.8rem;
             color: var(--text-dim);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         strong {
@@ -145,8 +170,8 @@
         }
 
         @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
             .hero { padding: 100px 20px; }
+            section { padding: 50px 20px; }
         }
     </style>
 </head>
@@ -156,7 +181,7 @@
         <h3>Shattered Oaths</h3>
         <h1>A world built on loyalty is about to collapse.</h1>
         <p>Power is rising. Trust is dying. And the ones who survive… will never be the same.</p>
-        <a href="https://books2read.com/ShatteredOaths" class="btn">👉 Start Reading Now</a>
+        <a href="https://books2read.com/shatteredoaths" class="btn">👉 Start Reading Now</a>
         <p class="micro-text">Available instantly. Start in seconds.</p>
     </section>
 
@@ -172,10 +197,10 @@
     <section>
         <h2>If you like stories that hit hard…</h2>
         <ul class="bullet-list">
-            <li>Characters forced into impossible choices</li>
-            <li>Emotional tension that builds and doesn’t let go</li>
-            <li>Unexpected betrayals</li>
-            <li>A world where right and wrong blur together</li>
+            <li><strong>Impossible Choices:</strong> Characters forced into corners where no one wins.</li>
+            <li><strong>Relentless Tension:</strong> Emotional stakes that build and never let go.</li>
+            <li><strong>Unexpected Betrayals:</strong> Trust is a luxury no one can afford.</li>
+            <li><strong>Blurred Morality:</strong> A world where right and wrong are lost in the shadows.</li>
         </ul>
         <p>Then this story will stay with you long after it ends.</p>
     </section>
@@ -191,7 +216,7 @@
 
     <section>
         <h2>Ready to enter the world?</h2>
-        <a href="https://books2read.com/ShatteredOaths" class="btn">👉 Get Your Copy Now</a>
+        <a href="https://books2read.com/shatteredoaths" class="btn">👉 Get Your Copy Now</a>
         <p class="micro-text">Start reading instantly.</p>
     </section>
 
@@ -204,7 +229,7 @@
         <h2>One choice can change everything.</h2>
         <p>The world is waiting. The story is ready. The only question is…</p>
         <p><strong>Will you step into it?</strong></p>
-        <a href="https://books2read.com/ShatteredOaths" class="btn">👉 Start Reading Now</a>
+        <a href="https://books2read.com/shatteredoaths" class="btn">👉 Start Reading Now</a>
     </section>
 
     <footer>

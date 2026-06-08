@@ -9,7 +9,7 @@
         :root {
             --bg-color: #0d1117; 
             --card-bg: #161b22;
-            --accent-color: #ff3e3e; /* Aggressive Dystopian Red */
+            --accent-color: #ff3e3e;
             --text-color: #c9d1d9;
             --muted-text: #8b949e;
         }
@@ -28,278 +28,96 @@
         h1, h2, h3, .tagline {
             font-family: 'Cinzel', serif;
             text-transform: uppercase;
-            letter-spacing: 5px; /* Maximum cinematic impact */
+            letter-spacing: 5px;
             color: #f0f6fc;
             margin: 0;
         }
 
-        section {
-            padding: 100px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
 
-        /* --- 1. HERO & 2. COVER DOMINANCE --- */
-        .hero {
-            display: flex;
-            flex-direction: column; /* Cover FIRST, then text */
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding-top: 60px;
-        }
+        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 90vh; text-align: center; }
+        .hero-image img { max-width: 400px; width: 100%; box-shadow: 0 0 80px rgba(255, 62, 62, 0.25); border: 2px solid #30363d; margin-bottom: 30px; }
 
-        .hero-image {
-            margin-bottom: 50px;
-        }
-        .hero-image img {
-            max-width: 500px; /* Dominating size */
-            width: 100%;
-            box-shadow: 0 0 80px rgba(255, 62, 62, 0.25);
-            border: 2px solid #30363d;
-        }
-
-        /* 1. SHORT HEADLINE, MORE IMPACT */
-        .hero-content h1 { 
-            font-size: 5rem; 
-            line-height: 1;
-            margin-bottom: 25px;
-            letter-spacing: 8px;
-        }
-
-        .punchy-pitch {
-            font-family: 'Cinzel', serif;
-            color: #fff;
-            font-size: 1.6rem;
-            line-height: 1.4;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
+        .hero-content h1 { font-size: 4rem; margin-bottom: 20px; }
+        .punchy-pitch { font-family: 'Cinzel', serif; color: #fff; font-size: 1.4rem; margin-bottom: 30px; }
         .highlight-accent { color: var(--accent-color); font-weight: bold; }
-
-        /* URGENCY TRIGGERS (Option 5) */
-        .urgency-triggers {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            font-family: 'Lora', serif;
-            font-style: italic;
-            color: var(--muted-text);
-            font-size: 1.1rem;
-            margin-top: 25px;
-        }
-
-        /* --- BIGGER, REPEATED BUTTONS --- */
-        .cta-container {
-            margin-top: 40px;
-            text-align: center;
-        }
 
         .cta-button {
             display: inline-block;
             background-color: var(--accent-color);
             color: #fff;
-            padding: 24px 60px; /* Maximum Conversion Size */
+            padding: 20px 50px;
             text-decoration: none;
             font-weight: 700;
             border-radius: 2px;
             transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 3px;
-            font-size: 1.3rem;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
+        .cta-button:hover { background-color: #cc0000; transform: translateY(-3px); }
 
-        .cta-button:hover {
-            background-color: #cc0000;
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 10px 40px rgba(255, 62, 62, 0.6);
-        }
-
-        /* --- 3. VISUAL BREAKS (HOOK BLOCK) --- */
-        .hook-block {
-            background: rgba(22, 27, 34, 0.98);
-            padding: 120px 20px;
-            text-align: center;
-            border-top: 2px solid #30363d;
-            border-bottom: 2px solid #30363d;
-        }
-
-        .broken-text p {
-            font-family: 'Lora', serif;
-            font-size: 1.8rem;
-            line-height: 1.2;
-            margin: 0;
-            margin-bottom: 25px;
-            color: #f0f6fc;
-        }
-
-        /* --- NEWSLETTER / 4. FINAL TENSION --- */
-        .newsletter { text-align: center; border-top: 1px solid #30363d; background-color: #000; }
+        .hook-block { background: rgba(22, 27, 34, 0.95); text-align: center; border-top: 1px solid #30363d; border-bottom: 1px solid #30363d; }
         
-        .tension-headline {
-            font-family: 'Cinzel', serif;
-            color: #fff;
-            font-size: 1.8rem;
-            line-height: 1.4;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .newsletter-form input[type="email"] {
-            padding: 20px;
-            width: 100%;
-            max-width: 450px;
-            background: #0d1117;
-            border: 1px solid #30363d;
-            color: #fff;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-
-        /* SUCCESS MESSAGE STYLING */
-        [data-fs-success] {
-            display: none;
-            padding: 30px;
-            background: rgba(68, 255, 68, 0.1);
-            border: 1px solid #44ff44;
-            color: #44ff44;
-            margin-bottom: 40px;
-            font-family: 'Lora', serif;
-            font-size: 1.3rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3.5rem; }
-            .hero-image img { max-width: 320px; }
-            .punchy-pitch { font-size: 1.2rem; }
-            .urgency-triggers { flex-direction: column; gap: 10px; }
-        }
+        .newsletter { text-align: center; border-top: 1px solid #30363d; background-color: #000; padding: 100px 20px; }
+        .newsletter-form input { padding: 20px; width: 100%; max-width: 400px; background: #0d1117; border: 1px solid #30363d; color: #fff; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        
-        <div class="hero-image">
-            <img src="cover.jpg.png" alt="Shattered Oaths Book Cover">
-        </div>
-
+        <div class="hero-image"><img src="cover.jpg.png" alt="Shattered Oaths Book Cover"></div>
         <div class="hero-content">
-            <h1>SHATTERED<br>OATHS</h1>
-            
-            <p class="punchy-pitch">
-                Power is rising.<br>
-                Trust is dying.<br>
-                A world built on loyalty is <span class="highlight-accent">about to collapse.</span>
-            </p>
-            
-            <div class="cta-container">
-                <a href="https://books2read.com/ShatteredOaths" target="_blank" class="cta-button">START READING NOW</a>
-                
-                <div class="urgency-triggers">
-                    <span>⭐ Available Now</span>
-                    <span>📖 Instant Access</span>
-                    <span>⚔️ Start in Seconds</span>
-                </div>
+            <h1>SHATTERED OATHS</h1>
+            <p class="punchy-pitch">Power is rising. Trust is dying.<br> A world built on loyalty is <span class="highlight-accent">about to collapse.</span></p>
+            <a href="https://books2read.com/ShatteredOaths" target="_blank" class="cta-button">START READING NOW</a>
+            <div style="margin-top: 15px;">
+                <a href="#" style="color: var(--accent-color); text-decoration: underline; font-size: 0.9rem;">Read the first chapter for free</a>
             </div>
         </div>
     </section>
 
     <section class="hook-block">
-        <div class="broken-text">
-            <p>This isn’t just a story.</p>
-            <p>It’s a breaking point.</p>
-            <p>The rules are gone.</p>
-            <div style="height: 30px;"></div>
-            <p>Kingdoms fall.</p>
-            <p>Alliances crumble overnight.</p>
-            <div style="height: 30px;"></div>
-            <p style="color: var(--accent-color); font-weight: 700;">No one escapes unchanged.</p>
-        </div>
-        
-        <div style="height: 60px;"></div>
-        
-        <h2 style="font-size: 2.2rem; color: #f0f6fc; line-height: 1.4;">
-            You don’t just read this story… <br>
-            <span style="color: var(--accent-color);">You feel every choice.</span>
-        </h2>
-
-        <div class="cta-container">
-            <a href="https://books2read.com/ShatteredOaths" target="_blank" class="cta-button">START READING NOW</a>
-        </div>
+        <h2 style="margin-bottom: 30px;">The Truth is Buried.</h2>
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem;">
+            In a world of absolute order, <strong>Kai Vex</strong> is a ghost in the machine of Neo-Eden. <strong>Selene</strong> is an elite Apex agent designed to hunt him down. When they face off, the kill order doesn't happen. 
+            They discover that the greatest threat isn't each other—it's the truth Apex has buried beneath their skin.
+        </p>
     </section>
 
     <section>
-        <div style="background-color: var(--card-bg); padding: 70px; border-radius: 4px; border: 1px solid #30363d; max-width: 850px; margin: 0 auto;">
-            <h2 style="color: #f0f6fc; margin-bottom: 40px; font-size: 2.2rem;">If you crave stories that hit hard...</h2>
-            <ul style="list-style: none; padding: 0; font-size: 1.4rem; color: #c9d1d9; line-height: 2.4;">
-                <li style="margin-bottom: 25px; padding-left: 45px; position: relative;">
-                    <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold; font-size: 1.6rem;">✕</span> Characters forced into impossible choices
-                </li>
-                <li style="margin-bottom: 25px; padding-left: 45px; position: relative;">
-                    <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold; font-size: 1.6rem;">✕</span> Emotional tension that builds and doesn’t let go
-                </li>
-                <li style="margin-bottom: 25px; padding-left: 45px; position: relative;">
-                    <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold; font-size: 1.6rem;">✕</span> Unexpected betrayals
-                </li>
-                <li style="margin-bottom: 25px; padding-left: 45px; position: relative;">
-                    <span style="position: absolute; left: 0; color: var(--accent-color); font-weight: bold; font-size: 1.6rem;">✕</span> A world where right and wrong blur together
-                </li>
+        <div style="background-color: var(--card-bg); padding: 50px; border-radius: 4px; border: 1px solid #30363d;">
+            <h2 style="margin-bottom: 30px;">Why Readers Are Hooked</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 15px;">✕ Characters forced into impossible choices</li>
+                <li style="margin-bottom: 15px;">✕ Emotional tension that builds and doesn’t let go</li>
+                <li style="margin-bottom: 15px;">✕ A world where right and wrong blur together</li>
             </ul>
         </div>
     </section>
 
-    <section class="reviews">
-        <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.4rem;">Reader Acclaim</h2>
-        <div class="review-grid">
-            <div class="review-card"><p>“Intense, emotional, and impossible to put down.”</p></div>
-            <div class="review-card"><p>“Every chapter pulls you deeper into the chaos.”</p></div>
-            <div class="review-card"><p>“You don’t know who to trust… and that’s what makes it powerful.”</p></div>
-        </div>
-    </section>
-
     <section class="newsletter">
+        <h2 style="margin-bottom: 20px;">Join the Inner Circle</h2>
+        <p style="max-width: 500px; margin: 0 auto 30px;">Get the <strong>"Legacy Drive"</strong>: exclusive lore, bonus scenes from the Apex command tower, and early access to the next installment.</p>
         
-        <p class="tension-headline">
-            The world is breaking.<br>
-            Power is rising.<br>
-            And once you step in…<br>
-            <span style="color: var(--accent-color); font-weight: bold;">There’s no turning back.</span>
-        </p>
-        
-        <div data-fs-success>
-            Welcome to the inner circle. You're in the wasteland now.
-        </div>
-        <div data-fs-error>
-            Something went wrong. Please check your connection and try again.
-        </div>
-
         <form id="newsletter-form">
-            <input type="email" name="email" placeholder="Your Email Address" required data-fs-field>
+            <input type="email" name="email" placeholder="Your Email Address" required>
             <br>
-            
-            <button type="submit" data-fs-submit-btn class="cta-button" style="padding: 24px 60px;">JOIN THE INNER CIRCLE</button>
+            <button type="submit" class="cta-button">Join Now</button>
         </form>
 
         <script>
             window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-            formspree('initForm', { 
-                formElement: '#newsletter-form', 
-                formId: 'mdaywkvg' 
-            });
+            formspree('initForm', { formElement: '#newsletter-form', formId: 'mdaywkvg' });
         </script>
         <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     </section>
 
-    <footer style="text-align: center; padding: 80px; color: var(--muted-text); font-size: 1rem; border-top: 1px solid #30363d;">
+    <footer style="text-align: center; padding: 40px; color: var(--muted-text); font-size: 0.9rem;">
         &copy; 2026 Marcio Araujo. All Rights Reserved.
     </footer>
+
+</body>
+</html>
 
 </body>
 </html>

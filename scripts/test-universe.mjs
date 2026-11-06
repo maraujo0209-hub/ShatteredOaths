@@ -1,0 +1,43 @@
+import { chromium } from 'playwright';
+import { spawn } from 'node:child_process';
+import { mkdir } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+
+await mkdir('preview-output', { recursive: true });
+const server = spawn('python3', ['-m', 'http.server', '8765', '--bind', '127.0.0.1'], { stdio: 'ignore' });
+const browser = await chromium.launch({ headless: true });
+let failures = [];
+try {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  for (const device of [
+    { name: 'desktop', width: 1440, height: 900 },
+    { name: 'mobile', width: 390, height: 844 },
+  ]) {
+    const page = await browser.newPage({ viewport: { width: device.width, height: device.height }, deviceScaleFactor: 1 });
+    page.on('pageerror', err => failures.push(device.name + ': ' + err.message));
+    await page.goto('http://127.0.0.1:8765/universe.html', { waitUntil: 'networkidle' });
+    await assert.equal(await page.locator('h1').count(), 1);
+    await assert.equal(await page.locator('#characters .character').count(), 2);
+    await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true });
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 2);
+    if (overflow) failures.push(device.name + ': horizontal overflow');
+    await page.locator('[data-location="apex"]').click();
+    assert.match(await page.locator('#map-info').innerText(), /Apex Headquarters/);
+    await page.locator('#unlock').click();
+    assert.equal(await page.locator('#unlock').getAttribute('aria-expanded'), 'true');
+    await page.locator('[data-dossier="kai"]').click();
+    assert.match(await page.locator('#dossier-detail').innerText(), /FUGITIVE 0167/);
+    if (device.name === 'mobile') {
+      await page.locator('.menu-toggle').click();
+      assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'), 'true');
+      await page.locator('#primary-links a[href="#book"]').click();
+      assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'), 'false');
+    }
+    await page.close();
+  }
+  assert.deepEqual(failures, [], failures.join('\n'));
+  console.log('Desktop/mobile browser checks passed. Screenshots saved.');
+} finally {
+  await browser.close();
+  server.kill();
+}

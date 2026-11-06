@@ -101,6 +101,33 @@ header{z-index:50}
 .map-disclaimer{font-size:.77rem;color:#a5bfcc;line-height:1.5;margin:.9rem .25rem .2rem}
 @media(max-width:600px){.map-panel{padding:.65rem}.map-topline{font-size:.56rem;letter-spacing:.09em}.map-controls{grid-template-columns:1fr;gap:.45rem}.map-controls .map-choice{justify-content:flex-start;padding:.65rem .85rem}.map-info{padding:1rem}.map-stage .city-map{min-height:170px;object-fit:cover}}
 @media(prefers-reduced-motion:reduce){.map-scanline{animation:none;display:none}}
+
+/* Cinematic finish: subtle motion, tactile interactions, and accessible fallbacks. */
+.hero{background-attachment:scroll}
+.hero:before{animation:hero-grid-drift 24s ease-in-out infinite alternate}
+.hero-figure{transition:opacity .65s ease,filter .65s ease;will-change:auto}
+.hero .eyebrow{animation:hero-arrive .8s ease-out both}
+.hero h1{animation:hero-arrive .95s .12s ease-out both}
+.hero .lead{animation:hero-arrive .95s .25s ease-out both}
+.hero .actions{animation:hero-arrive .95s .38s ease-out both}
+@keyframes hero-arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hero-grid-drift{from{opacity:.35;transform:translateX(-8px)}to{opacity:.65;transform:translateX(8px)}}
+.btn,.dossier-button,.terminal button,.map-controls .map-choice,.menu-toggle{transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.btn:hover,.dossier-button:hover,.terminal button:hover{transform:translateY(-2px);box-shadow:0 5px 24px #2cc4df33}
+.btn:active,.dossier-button:active,.terminal button:active,.map-controls .map-choice:active{transform:translateY(1px)}
+.map-controls .map-choice:hover{border-color:#9feeff;box-shadow:0 0 16px #54d9ee38}
+.map-controls .map-choice[aria-pressed=true]{box-shadow:inset 0 0 12px #fff4,0 0 16px #54d9ee44}
+.dossier-detail:not(.hidden),.reveal:not(.hidden){animation:classified-reveal .35s ease-out both}
+@keyframes classified-reveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.quick-grid a{position:relative;overflow:hidden}
+.quick-grid a:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,#9debf00d 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease;pointer-events:none}
+.quick-grid a:hover:before,.quick-grid a:focus-visible:before{transform:translateX(120%)}
+@media(hover:none){.quick-grid a:hover,.card:hover,.btn:hover,.dossier-button:hover,.terminal button:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){
+ .hero:before,.hero .eyebrow,.hero h1,.hero .lead,.hero .actions,.dossier-detail:not(.hidden),.reveal:not(.hidden){animation:none!important;transform:none!important;opacity:1!important}
+ .btn,.dossier-button,.terminal button,.map-controls .map-choice,.menu-toggle,.hero-figure,.quick-grid a:before{transition:none!important}
+ .quick-grid a:before{display:none}
+}
 </style></head>
 <body><a class="skip" href="#main">Skip to content</a><header><nav aria-label="Main navigation"><a class="brand" href="#top">SHATTERED OATHS</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links">☰ Menu</button><div class="links" id="primary-links"><a href="#top">Home</a><a href="#story">Story</a><a href="#characters">Characters</a><a href="#world">World</a><a href="#apex">Apex</a><a href="#archives">Archives</a><a href="#book">Books</a></div></nav></header>
 <main id="main"><div class="hero" id="top"><div class="hero-figure hero-kai" aria-hidden="true"></div><div class="hero-figure hero-selene" aria-hidden="true"></div><div class="hero-inner"><div><div class="eyebrow">The Neo-Eden Universe // Access Restricted</div><h1>SHATTERED<br>OATHS</h1><p class="lead">Power is rising. Trust is dying. In a world where loyalty is programmed, rebellion begins with a single choice.</p><div class="actions"><a class="btn primary" href="https://books2read.com/ShatteredOaths" target="_blank" rel="noopener noreferrer">Get the book</a><a class="btn" href="https://drive.google.com/file/d/1YFESrj3gQ0oxcV_wt1xJbCTm7XMi0b2G/view?usp=sharing" target="_blank" rel="noopener noreferrer">Read the first chapter</a></div></div><div><img class="cover" src="cover.jpg.png" alt="Cover of Shattered Oaths by Marcio Araujo" width="400"></div></div></div>

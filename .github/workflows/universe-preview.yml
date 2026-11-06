@@ -1,14 +1,24 @@
 name: Universe browser preview
 on:
+  push:
+    branches:
+      - feature/interactive-universe
+    paths:
+      - 'universe.html'
+      - 'assets/**'
+      - 'scripts/test-universe.mjs'
+      - '.github/workflows/universe-preview.yml'
   pull_request:
     paths:
       - 'universe.html'
       - 'assets/**'
+      - 'scripts/test-universe.mjs'
       - '.github/workflows/universe-preview.yml'
   workflow_dispatch:
 jobs:
   preview:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     steps:

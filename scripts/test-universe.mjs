@@ -6,6 +6,8 @@ import assert from 'node:assert/strict';
 await mkdir('preview-output', { recursive: true });
 const server = spawn('python3', ['-m', 'http.server', '8765', '--bind', '127.0.0.1'], { stdio: 'ignore' });
 const browser = await chromium.launch({ headless: true });
+const watchdog = setTimeout(() => { console.error('Browser preview watchdog: exceeded 120 seconds'); process.exit(2); }, 120000);
+watchdog.unref();
 let failures = [];
 try {
   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -14,6 +16,8 @@ try {
     { name: 'mobile', width: 390, height: 844 },
   ]) {
     const page = await browser.newPage({ viewport: { width: device.width, height: device.height }, deviceScaleFactor: 1 });
+    page.setDefaultTimeout(8000);
+    console.log('Starting preview:', device.name);
     page.on('pageerror', err => failures.push(device.name + ': ' + err.message));
     await page.goto('http://127.0.0.1:8765/universe.html', { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.locator('h1').waitFor({ timeout: 10000 });
@@ -35,15 +39,13 @@ try {
       if (!layer.includes(expected)) failures.push(device.name + ': portrait not applied to ' + key);
     }
     await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true, animations: 'disabled', timeout: 20000 });
-    const missingImages = await page.evaluate(async () => {
-      const images = [...document.querySelectorAll('img')];
-      await Promise.all(images.map(img => img.decode().catch(() => null)));
-      return images.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.getAttribute('src'));
-    });
+    console.log('Screenshot captured:', device.name);
+    const missingImages = await page.evaluate(() => [...document.querySelectorAll('img')].filter(img => img.complete && img.naturalWidth === 0).map(img => img.getAttribute('src')));
     if (missingImages.length) failures.push(device.name + ': missing images: ' + missingImages.join(', '));
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 2);
     if (overflow) failures.push(device.name + ': horizontal overflow');
-    await page.locator('[data-location="apex"]').click({timeout:10000});
+    console.log('Testing interactions:', device.name);
+    await page.locator('[data-location="apex"]').click({timeout:8000});
     assert.match(await page.locator('#map-info').innerText(), /Apex Headquarters/);
     await page.locator('#unlock').click();
     assert.equal(await page.locator('#unlock').getAttribute('aria-expanded'), 'true');
@@ -59,10 +61,12 @@ try {
       assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'), 'false');
     }
     await page.close();
+    console.log('Finished preview:', device.name);
   }
   assert.deepEqual(failures, [], failures.join('\n'));
   console.log('Desktop/mobile browser checks passed. Screenshots saved.');
 } finally {
   await browser.close();
   server.kill();
+  clearTimeout(watchdog);
 }

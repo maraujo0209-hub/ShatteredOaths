@@ -19,8 +19,10 @@ try {
     page.setDefaultTimeout(8000);
     console.log('Starting preview:', device.name);
     page.on('pageerror', err => failures.push(device.name + ': ' + err.message));
-    await page.goto('http://127.0.0.1:8765/universe.html', { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.goto('http://127.0.0.1:8765/', { waitUntil: 'domcontentloaded', timeout: 20000 });
     await page.locator('h1').waitFor({ timeout: 10000 });
+    assert.match(await page.title(), /Shattered Oaths/);
+    assert.equal(new URL(page.url()).pathname, '/');
     await assert.equal(await page.locator('h1').count(), 1);
     await assert.equal(await page.locator('#characters .character').count(), 2);
     const portraitStatus = await page.evaluate(async () => {

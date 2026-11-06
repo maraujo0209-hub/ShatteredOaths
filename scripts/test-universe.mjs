@@ -15,7 +15,8 @@ try {
   ]) {
     const page = await browser.newPage({ viewport: { width: device.width, height: device.height }, deviceScaleFactor: 1 });
     page.on('pageerror', err => failures.push(device.name + ': ' + err.message));
-    await page.goto('http://127.0.0.1:8765/universe.html', { waitUntil: 'networkidle' });
+    await page.goto('http://127.0.0.1:8765/universe.html', { waitUntil: 'domcontentloaded', timeout: 20000 });
+    await page.locator('h1').waitFor({ timeout: 10000 });
     await assert.equal(await page.locator('h1').count(), 1);
     await assert.equal(await page.locator('#characters .character').count(), 2);
     const portraitStatus = await page.evaluate(async () => {
@@ -33,7 +34,7 @@ try {
       const expected = key.toLowerCase().includes('selene') ? 'selene-portrait.webp' : 'kai-vex-portrait.webp';
       if (!layer.includes(expected)) failures.push(device.name + ': portrait not applied to ' + key);
     }
-    await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true });
+    await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true, animations: 'disabled', timeout: 20000 });
     const missingImages = await page.evaluate(async () => {
       const images = [...document.querySelectorAll('img')];
       await Promise.all(images.map(img => img.decode().catch(() => null)));
@@ -42,7 +43,7 @@ try {
     if (missingImages.length) failures.push(device.name + ': missing images: ' + missingImages.join(', '));
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 2);
     if (overflow) failures.push(device.name + ': horizontal overflow');
-    await page.locator('[data-location="apex"]').click();
+    await page.locator('[data-location="apex"]').click({timeout:10000});
     assert.match(await page.locator('#map-info').innerText(), /Apex Headquarters/);
     await page.locator('#unlock').click();
     assert.equal(await page.locator('#unlock').getAttribute('aria-expanded'), 'true');
@@ -50,7 +51,7 @@ try {
     assert.match(await page.locator('#dossier-detail').innerText(), /FUGITIVE 0167/);
     await page.locator('[data-dossier="selene"]').click();
     assert.match(await page.locator('#dossier-detail').innerText(), /AGENT 06/);
-    await page.screenshot({ path: 'preview-output/' + device.name + '-interactions.png', fullPage: true });
+    await page.screenshot({ path: 'preview-output/' + device.name + '-interactions.png', fullPage: true, animations: 'disabled', timeout: 20000 });
     if (device.name === 'mobile') {
       await page.locator('.menu-toggle').click();
       assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'), 'true');

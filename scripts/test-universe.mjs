@@ -19,6 +19,12 @@ try {
     await assert.equal(await page.locator('h1').count(), 1);
     await assert.equal(await page.locator('#characters .character').count(), 2);
     await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true });
+    const missingImages = await page.evaluate(async () => {
+      const images = [...document.querySelectorAll('img')];
+      await Promise.all(images.map(img => img.decode().catch(() => null)));
+      return images.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.getAttribute('src'));
+    });
+    if (missingImages.length) failures.push(device.name + ': missing images: ' + missingImages.join(', '));
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 2);
     if (overflow) failures.push(device.name + ': horizontal overflow');
     await page.locator('[data-location="apex"]').click();
@@ -27,6 +33,9 @@ try {
     assert.equal(await page.locator('#unlock').getAttribute('aria-expanded'), 'true');
     await page.locator('[data-dossier="kai"]').click();
     assert.match(await page.locator('#dossier-detail').innerText(), /FUGITIVE 0167/);
+    await page.locator('[data-dossier="selene"]').click();
+    assert.match(await page.locator('#dossier-detail').innerText(), /AGENT 06/);
+    await page.screenshot({ path: 'preview-output/' + device.name + '-interactions.png', fullPage: true });
     if (device.name === 'mobile') {
       await page.locator('.menu-toggle').click();
       assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'), 'true');

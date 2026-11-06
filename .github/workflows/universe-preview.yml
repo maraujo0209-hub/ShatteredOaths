@@ -1,0 +1,42 @@
+name: Universe browser preview
+on:
+  push:
+    branches:
+      - feature/interactive-universe
+    paths:
+      - 'universe.html'
+      - 'index.html'
+      - 'assets/**'
+      - 'scripts/test-universe.mjs'
+      - '.github/workflows/universe-preview.yml'
+  pull_request:
+    paths:
+      - 'universe.html'
+      - 'assets/**'
+      - 'scripts/test-universe.mjs'
+      - '.github/workflows/universe-preview.yml'
+  workflow_dispatch:
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser tooling
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Capture desktop and mobile previews
+        run: node scripts/test-universe.mjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shattered-oaths-universe-previews
+          path: preview-output/
+          if-no-files-found: warn

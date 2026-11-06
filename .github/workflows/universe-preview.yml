@@ -5,6 +5,7 @@ on:
       - feature/interactive-universe
     paths:
       - 'universe.html'
+      - 'index.html'
       - 'assets/**'
       - 'scripts/test-universe.mjs'
       - '.github/workflows/universe-preview.yml'

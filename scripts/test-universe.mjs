@@ -18,6 +18,11 @@ try {
     await page.goto('http://127.0.0.1:8765/universe.html', { waitUntil: 'networkidle' });
     await assert.equal(await page.locator('h1').count(), 1);
     await assert.equal(await page.locator('#characters .character').count(), 2);
+    const portraitStatus = await page.evaluate(async () => {
+      const paths = ['assets/kai-vex-portrait.webp', 'assets/selene-portrait.webp'];
+      return Promise.all(paths.map(async path => ({path, ok: (await fetch(path)).ok})));
+    });
+    for (const image of portraitStatus) if (!image.ok) failures.push(device.name + ': portrait missing: ' + image.path);
     await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true });
     const missingImages = await page.evaluate(async () => {
       const images = [...document.querySelectorAll('img')];

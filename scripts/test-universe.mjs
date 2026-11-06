@@ -23,6 +23,16 @@ try {
       return Promise.all(paths.map(async path => ({path, ok: (await fetch(path)).ok})));
     });
     for (const image of portraitStatus) if (!image.ok) failures.push(device.name + ': portrait missing: ' + image.path);
+    const portraitLayers = await page.evaluate(() => ({
+      kai: getComputedStyle(document.querySelector('.hero-kai')).backgroundImage,
+      selene: getComputedStyle(document.querySelector('.hero-selene')).backgroundImage,
+      kaiDossier: getComputedStyle(document.querySelector('.character:first-child'), '::before').backgroundImage,
+      seleneDossier: getComputedStyle(document.querySelector('.character:nth-child(2)'), '::before').backgroundImage
+    }));
+    for (const [key, layer] of Object.entries(portraitLayers)) {
+      const expected = key.toLowerCase().includes('selene') ? 'selene-portrait.webp' : 'kai-vex-portrait.webp';
+      if (!layer.includes(expected)) failures.push(device.name + ': portrait not applied to ' + key);
+    }
     await page.screenshot({ path: 'preview-output/' + device.name + '.png', fullPage: true });
     const missingImages = await page.evaluate(async () => {
       const images = [...document.querySelectorAll('img')];

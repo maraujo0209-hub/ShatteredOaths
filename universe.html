@@ -20,6 +20,42 @@ header{position:sticky;top:0;z-index:10;background:#080d16ed;border-bottom:1px s
 @media(min-width:901px){.hero-figure{width:31%;opacity:.8}.hero-kai{left:-2%}.hero-selene{right:-2%}.hero-inner{max-width:860px;grid-template-columns:1fr;justify-items:center}.hero-inner>div:last-child{display:none}.hero-inner>div:first-child{padding:2.5rem 0;background:radial-gradient(ellipse,#080d16c7 0%,#080d1650 55%,transparent 75%)}}
 @media(max-width:900px){.hero-figure{opacity:.38}}
 @media(max-width:600px){.hero-figure{width:55%;opacity:.22}.hero-kai{left:-17%}.hero-selene{right:-17%}}
+
+/* Mobile-first cinematic hero and reliable sticky navigation. */
+header{z-index:50}
+@media(max-width:760px){
+  header nav{padding:.75rem 1rem;min-height:58px;flex-wrap:nowrap}
+  header .brand{font-size:.84rem;white-space:nowrap}
+  .menu-toggle{min-height:40px;flex-shrink:0}
+  nav .links{position:absolute;top:100%;left:0;right:0;width:auto;padding:.5rem 1rem 1rem;background:#08121ef7;border-bottom:1px solid #4b8798;box-shadow:0 20px 35px #0009;max-height:calc(100dvh - 60px);overflow-y:auto}
+  nav .links.open{display:flex}
+  section[id],#top{scroll-margin-top:76px}
+  .hero{min-height:650px;min-height:min(740px,calc(100svh - 58px));display:flex;align-items:flex-end;isolation:isolate;background-position:center;background-size:cover}
+  .hero:before{z-index:1;opacity:.4}
+  .hero:after{height:70%;z-index:1;background:linear-gradient(0deg,#080d16 1%,#080d16ed 25%,#080d1670 65%,transparent 100%)}
+  .hero-figure{top:0;bottom:auto;height:72%;width:59%;opacity:.9;filter:none;background-repeat:no-repeat;background-size:auto,cover}
+  .hero-kai{left:-5%;background-position:center,58% 22%;mask-image:linear-gradient(90deg,#000 65%,transparent 100%)}
+  .hero-selene{right:-5%;background-position:center,40% 22%;mask-image:linear-gradient(270deg,#000 65%,transparent 100%)}
+  .hero-inner{z-index:3;display:block;padding:0 1.15rem 3rem;max-width:560px}
+  .hero-inner>div:first-child{padding:0;background:none}
+  .hero-inner .eyebrow{font-size:.61rem;letter-spacing:.19em;line-height:1.5}
+  .hero-inner h1{font-size:clamp(2.65rem,11vw,4.6rem);line-height:1.04;margin:.65rem 0;text-shadow:0 3px 18px #000,0 0 38px #000}
+  .hero-inner .lead{font-size:.95rem;line-height:1.55;max-width:390px;margin:.85rem auto 0;color:#eef4fa;text-shadow:0 2px 12px #000}
+  .hero-inner .actions{gap:.7rem;margin-top:1.4rem}
+  .hero-inner .btn{padding:.8rem 1rem;font-size:.68rem;letter-spacing:.07em}
+  .quick-nav{padding-top:1.2rem}
+  #characters h2{font-size:clamp(1.7rem,6.5vw,2.7rem);overflow-wrap:normal}
+}
+@media(max-width:420px){
+  .hero{min-height:590px;min-height:max(590px,calc(100svh - 58px))}
+  .hero-figure{height:65%;width:64%}
+  .hero-kai{left:-10%}
+  .hero-selene{right:-10%}
+  .hero-inner{padding-bottom:2.4rem}
+  .hero-inner h1{font-size:clamp(2.35rem,11vw,3.2rem)}
+  .hero-inner .actions{flex-direction:column;align-items:center}
+  .hero-inner .actions .btn{min-width:190px;text-align:center}
+}
 </style></head>
 <body><a class="skip" href="#main">Skip to content</a><header><nav aria-label="Main navigation"><a class="brand" href="#top">SHATTERED OATHS</a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links">☰ Menu</button><div class="links" id="primary-links"><a href="#top">Home</a><a href="#story">Story</a><a href="#characters">Characters</a><a href="#world">World</a><a href="#apex">Apex</a><a href="#archives">Archives</a><a href="#book">Books</a></div></nav></header>
 <main id="main"><div class="hero" id="top"><div class="hero-figure hero-kai" aria-hidden="true"></div><div class="hero-figure hero-selene" aria-hidden="true"></div><div class="hero-inner"><div><div class="eyebrow">The Neo-Eden Universe // Access Restricted</div><h1>SHATTERED<br>OATHS</h1><p class="lead">Power is rising. Trust is dying. In a world where loyalty is programmed, rebellion begins with a single choice.</p><div class="actions"><a class="btn primary" href="https://books2read.com/ShatteredOaths" target="_blank" rel="noopener noreferrer">Get the book</a><a class="btn" href="https://drive.google.com/file/d/1YFESrj3gQ0oxcV_wt1xJbCTm7XMi0b2G/view?usp=sharing" target="_blank" rel="noopener noreferrer">Read the first chapter</a></div></div><div><img class="cover" src="cover.jpg.png" alt="Cover of Shattered Oaths by Marcio Araujo" width="400"></div></div></div>
